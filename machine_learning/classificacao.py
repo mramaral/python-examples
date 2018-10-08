@@ -20,8 +20,21 @@ multCP.fit(dados, marcacoes)
 d1 = [1, 1, 1]
 d2 = [0, 0, 0]
 d3 = [0, 1, 0]
-
+marcacoes_teste = [-1, -1, 1]
 teste = [d1, d2, d3]
-
+#tentando advinhar a classificacao dos elementos desconhecidos
 resultado = multCP.predict(teste)
 print(resultado)
+
+#calculando a taxa de acerto
+#calculando as diferencas
+diferencas = resultado - marcacoes_teste
+#contando os acertos
+acertos = [d for d in diferencas if d == 0]
+#calculando a taxa de acertos
+taxa_de_acerto = 100.0*(len(acertos)/len(resultado))
+                        
+print(resultado)
+print(diferencas)
+#print(acertos)
+print(taxa_de_acerto)
