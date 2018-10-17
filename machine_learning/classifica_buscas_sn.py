@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv('busca.csv')
+df = pd.read_csv('busca_sn.csv')
 X_df = df[['home', 'busca', 'logado',]]
 Y_df = df['comprou']
 Xdummies_df = pd.get_dummies(X_df)
@@ -23,18 +23,19 @@ modelo.fit(treino_dados, treino_marcacoes)
 
 resultado = modelo.predict(teste_dados)
 
-diferencas = resultado - teste_marcacoes
-
-acertos = [d for d in diferencas if d == 0]
-total_de_acertos = len(acertos)
-total_de_elementos = len(teste_dados)
+acertos = resultado == teste_marcacoes
+total_de_acertos = sum(acertos)
+total_de_elementos = len(teste_marcacoes)
 
 taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
 
 print('Total de elementos: %f' % total_de_elementos)
 print('Taxa de acerto: %f' % taxa_de_acerto)
 
-acerto_de_um = sum(Y)
-acerto_de_zero = len(Y)-acerto_de_um
-taxa_de_acerto_base = (100.0*max(acerto_de_um, acerto_de_zero))/len(Y)
+from collections import Counter
+acerto_base = max(Counter(teste_marcacoes).values())
+taxa_de_acerto_base = (100.0*acerto_base/len(teste_marcacoes))
 print('Taxa de acerto Base: %f' % taxa_de_acerto_base)
+
+
+
