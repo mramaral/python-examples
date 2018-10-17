@@ -31,5 +31,10 @@ total_de_elementos = len(teste_dados)
 
 taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
 
-print(taxa_de_acerto)
-print(total_de_elementos)
+print('Total de elementos: %f' % total_de_elementos)
+print('Taxa de acerto: %f' % taxa_de_acerto)
+
+acerto_de_um = sum(Y)
+acerto_de_zero = len(Y)-acerto_de_um
+taxa_de_acerto_base = (100.0*max(acerto_de_um, acerto_de_zero))/len(Y)
+print('Taxa de acerto Base: %f' % taxa_de_acerto_base)
